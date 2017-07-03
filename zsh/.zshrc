@@ -44,3 +44,6 @@ VIRTUALENVWRAPPER="/usr/local/bin/virtualenvwrapper.sh"
 
 # Load custom dircolors
 [ -s ~/.dir_colors ] && eval `dircolors ~/.dir_colors`
+
+# Adding rbenv to path
+[ -d $HOME/.rbenv ] && export PATH="$HOME/.rbenv/bin:$PATH"
