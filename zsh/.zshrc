@@ -43,4 +43,4 @@ VIRTUALENVWRAPPER="/usr/local/bin/virtualenvwrapper.sh"
 [[ -s $VIRTUALENVWRAPPER ]] && source $VIRTUALENVWRAPPER
 
 # Load custom dircolors
-eval `dircolors ~/.dir_colors`
+[ -s ~/.dir_colors ] && eval `dircolors ~/.dir_colors`
