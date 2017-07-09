@@ -62,6 +62,7 @@ call plug#end()
 " ================ General Config ====================
 
 set t_Co=256                    "Always use all 256 colors
+set termguicolors               "Use 24bit colors if possible
 set number                      "Line numbers are good
 set hidden                      "It's okay to have buffers that are hidden
 set showcmd                     "show partially written commands (in the bottom-right corner)
