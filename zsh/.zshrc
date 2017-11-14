@@ -28,7 +28,7 @@ antigen bundle command-not-found
 antigen bundle zsh-users/zsh-syntax-highlighting
 
 # Load the theme.
-antigen theme amuse
+antigen theme bureau
 
 # Tell antigen that you're done.
 antigen apply
