@@ -250,9 +250,13 @@ let g:thematic#themes = {
       \     'colorscheme': 'base16-paraiso',
       \     'airline-theme': 'base16_paraiso',
       \   },
+      \   'gruvbox':{
+      \     'colorscheme': 'gruvbox',
+      \     'airline-theme': 'gruvbox',
+      \   },
       \ }
 
-let g:thematic#theme_name = 'paraiso'
+let g:thematic#theme_name = 'gruvbox'
 
 " ================ Plugin customisation =============
 
