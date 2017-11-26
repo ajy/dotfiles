@@ -12,6 +12,12 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
+# Load custom dircolors
+[ -s ~/.dir_colors ] && eval `dircolors ~/.dir_colors`
+
+# colored completion - use my LS_COLORS
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+
 ADOTDIR=$HOME/.config/antigen/
 source ~/.config/antigen/antigen.zsh
 
@@ -41,9 +47,6 @@ BASE16_SHELL=$HOME/.config/base16-shell/
 export WORKON_HOME=~/VirtualEnvs
 VIRTUALENVWRAPPER="/usr/local/bin/virtualenvwrapper.sh"
 [[ -s $VIRTUALENVWRAPPER ]] && source $VIRTUALENVWRAPPER
-
-# Load custom dircolors
-[ -s ~/.dir_colors ] && eval `dircolors ~/.dir_colors`
 
 # Adding rbenv to path
 [ -d $HOME/.rbenv ] && export PATH="$HOME/.rbenv/bin:$PATH"
