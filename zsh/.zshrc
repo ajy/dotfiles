@@ -12,11 +12,14 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
-# Load custom dircolors
-[ -s ~/.dir_colors ] && eval `dircolors ~/.dir_colors`
+# if dircolors exists
+if type "dircolors" > /dev/null; then
+    # Load custom dircolors
+    [ -s ~/.dir_colors ] && eval `dircolors ~/.dir_colors`
 
-# colored completion - use my LS_COLORS
-zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+    # colored completion - use my LS_COLORS
+    zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+fi
 
 ADOTDIR=$HOME/.config/antigen/
 source ~/.config/antigen/antigen.zsh
