@@ -1,7 +1,8 @@
 " Neovim configuration file
 
 " Load vimrc settings file
-source vimrc
+" source vimrc
+execute 'source '.expand('<sfile>:p:h').'/vimrc'
 
 " Cursor shape changing
 set guicursor=n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20
