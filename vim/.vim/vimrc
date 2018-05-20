@@ -55,7 +55,7 @@ Plug 'jnwhiteh/vim-golang'
 "misc bundles
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'scrooloose/syntastic'
+Plug 'w0rp/ale'
 Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify'
 Plug 'christoomey/vim-tmux-navigator'
@@ -233,9 +233,6 @@ set background=dark
 colorscheme gruvbox
 
 " ================ Plugin customisation =============
-
-"syntastic
-let g:syntastic_error_symbol='✗' "change the default error symbol
 
 "Gundo
 let g:gundo_preview_bottom = 1 "improve how gundo window is displayed
