@@ -5,6 +5,8 @@ set nocompatible
 " This loads all the plugins in ~/.vim/plugged
 " Use vim-plug plugin to manage all other plugins
 
+let g:python3_host_prog = 'C:\Python36\python.exe'
+let g:python_host_prog = 'C:\Python27\python.exe'
 call plug#begin()
 
 "Autocompletion bundles
