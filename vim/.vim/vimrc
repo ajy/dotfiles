@@ -64,8 +64,6 @@ Plug 'Keithbsmiley/investigate.vim'
 
 " Colorschemes
 Plug 'nanotech/jellybeans.vim'
-Plug 'chriskempson/base16-vim'
-Plug 'reedes/vim-thematic'
 Plug 'trevordmiller/nova-vim'
 Plug 'morhetz/gruvbox'
 
@@ -73,7 +71,6 @@ call plug#end()
 
 " ================ General Config ====================
 
-set t_Co=256                    "Always use all 256 colors
 set t_ut=                       "don't use the current background color for clearing
 set number                      "Line numbers are good
 set hidden                      "It's okay to have buffers that are hidden
@@ -228,45 +225,12 @@ set wildignore=.svn,CVS,.git,.hg,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jp
 
 " ================ Appearance =======================
 
-let base16colorspace=256
-"thematic configuration
-let g:thematic#defaults = {
-      \ 'airline-theme': 'dark',
-      \ 'background': 'dark',
-      \ 'laststatus': 2,
-      \ 'typeface': 'Source Code Pro',
-      \ 'font-size': 10,
-      \ }
+if has('termguicolors')
+  set termguicolors             "Use 24bit colors if available
+endif
 
-let g:thematic#themes = {
-      \   'solarized-dark':{
-      \     'colorscheme': 'base16-solarized',
-      \     'background': 'dark',
-      \   },
-      \   'solarized-light':{
-      \     'colorscheme': 'base16-solarized',
-      \     'background': 'light',
-      \   },
-      \   'lakeside':{
-      \     'colorscheme': 'base16-atelierlakeside',
-      \   },
-      \   'tomorrow':{
-      \     'colorscheme': 'base16-tomorrow',
-      \   },
-      \   'seaside':{
-      \     'colorscheme': 'base16-seaside',
-      \   },
-      \   'paraiso':{
-      \     'colorscheme': 'base16-paraiso',
-      \     'airline-theme': 'base16_paraiso',
-      \   },
-      \   'gruvbox':{
-      \     'colorscheme': 'gruvbox',
-      \     'airline-theme': 'gruvbox',
-      \   },
-      \ }
-
-let g:thematic#theme_name = 'gruvbox'
+set background=dark
+colorscheme gruvbox
 
 " ================ Plugin customisation =============
 
