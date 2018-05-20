@@ -21,7 +21,6 @@ endif
 let g:deoplete#enable_at_startup = 1
 
 "file/directory movement bundles
-Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-eunuch'
 if executable("ctags")
@@ -56,7 +55,6 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/syntastic'
 Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify'
-Plug 'joonty/vdebug'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'mileszs/ack.vim'
 Plug 'Keithbsmiley/investigate.vim'
@@ -271,11 +269,6 @@ let g:thematic#theme_name = 'gruvbox'
 
 "syntastic
 let g:syntastic_error_symbol='✗' "change the default error symbol
-
-"NERDTree
-let NERDTreeIgnore = ['\.pyc$'] "ignore files in file browser
-" open NERDTree window
-nnoremap <F4> :NERDTreeToggle<CR>
 
 "Gundo
 let g:gundo_preview_bottom = 1 "improve how gundo window is displayed
