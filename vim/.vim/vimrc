@@ -129,9 +129,6 @@ noremap k gk
 " toggle spell check
 nmap <leader>s :set spell!<CR>
 
-"never press shift to enter commands again
-nmap ; :
-
 " remove highlighting
 nmap <leader>rh :noh<CR>
 
