@@ -14,14 +14,6 @@ call plug#begin()
 
 "Autocompletion bundles
 Plug 'jiangmiao/auto-pairs'
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
-let g:deoplete#enable_at_startup = 1
 
 "file/directory movement bundles
 Plug 'tpope/vim-vinegar'
@@ -30,7 +22,6 @@ if executable("ctags")
   "requires exuberant-ctags
   Plug 'majutsushi/tagbar'
 endif
-Plug 'tpope/vim-projectile'
 
 "handy editing bundles
 Plug 'sjl/gundo.vim'
@@ -39,7 +30,6 @@ Plug 'tpope/vim-surround'
 Plug 'godlygeek/tabular'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-abolish'
-Plug 'vim-scripts/YankRing.vim'
 Plug 'mhinz/vim-startify'
 Plug 'Yggdroot/indentLine'
 Plug 'nelstrom/vim-visual-star-search'
@@ -47,7 +37,6 @@ Plug 'AndrewRadev/splitjoin.vim'
 Plug 'tpope/vim-sleuth'
 
 "Language support bundles
-Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-git'
 Plug 'jnwhiteh/vim-golang'
 
@@ -57,9 +46,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'w0rp/ale'
 Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify'
-Plug 'christoomey/vim-tmux-navigator'
 Plug 'mileszs/ack.vim'
-Plug 'Keithbsmiley/investigate.vim'
 
 " Colorschemes
 Plug 'nanotech/jellybeans.vim'
@@ -234,10 +221,6 @@ colorscheme gruvbox
 let g:gundo_preview_bottom = 1 "improve how gundo window is displayed
 " open gundo window
 nnoremap <F3> :GundoToggle<CR>
-
-"Yankring
-let g:yankring_persist = 0 "don't persist yankring across session
-let g:yankring_history_dir = '~/.vim'
 
 " open tagbar window
 nmap <F8> :TagbarToggle<CR>
