@@ -1,3 +1,6 @@
 {{ if ne .chezmoi.os "linux" }}
 .dir_colors
 {{ end }}
+{{ if ne .chezmoi.os "windows" }}
+.vimfiles
+{{ end }}
