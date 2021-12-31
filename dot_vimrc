@@ -1,0 +1,233 @@
+" Use Vim settings, rather then Vi settings (much better!).
+set nocompatible
+
+" =============== vim-plug Initialization ===============
+" This loads all the plugins in ~/.vim/plugged
+" Use vim-plug plugin to manage all other plugins
+
+if has('win32')
+    let g:python3_host_prog = 'C:\Python36\python.exe'
+    let g:python_host_prog = 'C:\Python27\python.exe'
+endif
+
+call plug#begin()
+
+"Autocompletion bundles
+Plug 'jiangmiao/auto-pairs'
+
+"file/directory movement bundles
+Plug 'tpope/vim-vinegar'
+Plug 'tpope/vim-eunuch'
+if executable("ctags")
+  "requires exuberant-ctags
+  Plug 'majutsushi/tagbar'
+endif
+
+"handy editing bundles
+Plug 'simnalamburt/vim-mundo'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+Plug 'godlygeek/tabular'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-abolish'
+Plug 'junegunn/vim-peekaboo'
+Plug 'mhinz/vim-startify'
+Plug 'Yggdroot/indentLine'
+Plug 'nelstrom/vim-visual-star-search'
+Plug 'AndrewRadev/splitjoin.vim'
+Plug 'tpope/vim-sleuth'
+
+"Language support bundles
+Plug 'tpope/vim-git'
+Plug 'jnwhiteh/vim-golang'
+
+"misc bundles
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'w0rp/ale'
+Plug 'tpope/vim-fugitive'
+Plug 'mhinz/vim-signify'
+Plug 'mileszs/ack.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+
+" Colorschemes
+Plug 'nanotech/jellybeans.vim'
+Plug 'trevordmiller/nova-vim'
+Plug 'morhetz/gruvbox'
+
+call plug#end()
+
+" ================ General Config ====================
+
+set t_ut=                       "don't use the current background color for clearing
+set number                      "Line numbers are good
+set hidden                      "It's okay to have buffers that are hidden
+set showcmd                     "show partially written commands (in the bottom-right corner)
+set backspace=indent,eol,start  "Allow backspace in insert mode
+set history=10000               "Store lots of :cmdline history
+set gcr=a:blinkon0              "Disable cursor blink, does not work in terminal
+set visualbell                  "No sounds
+set t_vb=                       "No flashes
+set autoread                    "Reload files changed outside vim
+set cursorline                  "highlight the current line always
+set ruler                       "get a handy ruler in the corner
+set encoding=utf-8              "Necessary to show unicode glyphs for powerline
+set fileformats=unix,mac,dos    "get all the file formats, set to particular one using :set fileformat= command
+set showmatch                   "show matching bracket always
+set mouse=a                     "set mouse mode to all, so i can use it
+set laststatus=2                "always show the status line, required with powerline
+set nofoldenable                "Say no to code folding...
+set cpoptions+=$                "show $ at the end of the selection when using c
+set listchars=tab:▸\ ,eol:¬     "set characters to represent tabs and \n when visible
+set scrolloff=3                 "scroll with some context
+set sidescrolloff=5
+set spelllang=en_gb             "set spell to use british english
+set ignorecase                  "ignore case when looking for patterns
+set smartcase                   "override ignore case when pattern has upper case
+set hlsearch                    "highlight matched patterns
+set incsearch                   "search incrementally for pattern
+set virtualedit=block           "allow virtual editing in visual mode
+
+"use system clipboard by default for yanking and pasting
+set clipboard=unnamed
+if has("unix")
+  " X system clipboard is different,so
+  set clipboard=unnamedplus
+endif
+
+"use persistent undo if available
+if has('persistent_undo')
+  set undofile
+endif
+
+syntax on
+
+" ================ remapped keys =====================
+
+" remap leader key
+let mapleader = " "
+
+" shows invisibles in normal mode
+nmap <leader>l :set list!<CR>
+
+"logical movement
+noremap j gj
+noremap k gk
+
+" toggle spell check
+nmap <leader>s :set spell!<CR>
+
+" remove highlighting
+nmap <leader>rh :noh<CR>
+
+" a more logical Y in normal mode
+nnoremap Y y$
+
+" I can type :help on my own, thanks.
+inoremap <F1> <Esc>
+noremap <F1> <Esc>
+vnoremap <F1> <Esc>
+
+" Quickly edit the vimrc file in the repo
+nmap <silent> <leader>ev :tabe $MYVIMRC<CR>
+
+" ================ Persistent swp/backup ==================
+" Keep swaps and backups in one place,
+" but avoid the current directory
+if isdirectory(expand('~/.cache/vim'))
+  set directory^=~/.cache/vim//
+  set backupdir^=~/.cache/vim//
+  set undodir=~/.cache/vim//
+else "never store it in the current directory ever
+  if !isdirectory(expand('$HOME/.vim_cache'))
+    silent execute '!mkdir '.expand('$HOME/.vim_cache')
+  endif
+  set backupdir^=$HOME/.vim_cache/
+  set directory^=$HOME/.vim_cache/
+  set undodir=~/.vim_cache/
+endif
+
+" ================ Indentation ======================
+
+" default settings
+set autoindent
+set smartindent
+set smarttab
+set shiftwidth=4
+set softtabstop=4
+set tabstop=4
+set expandtab
+set shiftround "round off indent to multiple of shiftwidth, untested
+
+filetype plugin indent on
+
+set nowrap       "Don't wrap lines
+set linebreak    "Wrap lines at convenient points, without inserting <EOL>s
+
+if has('autocmd')
+  augroup FileBasedSettings
+    autocmd!
+    "Adjust indentation by filetype
+    autocmd FileType go setlocal ai ts=8 sw=8 noexpandtab
+    "Spellcheck git messages
+    autocmd BufRead COMMIT_EDITMSG setlocal spell
+  augroup END
+
+  "Auto source vimrc when saved
+  augroup VimReload
+    autocmd!
+    autocmd BufWritePost $MYVIMRC,vimrc echo "Reloading vimrc..."
+    autocmd BufWritePost $MYVIMRC,vimrc so $MYVIMRC
+    autocmd BufWritePost $MYVIMRC,vimrc echo "DONE"
+  augroup END
+
+  "Always open help in a new tab
+  augroup HelpInTabs
+    autocmd!
+    autocmd BufEnter *.txt call HelpInNewTab()
+
+    function! HelpInNewTab ()
+      if &buftype == 'help'
+        execute "normal \<C-W>T"
+      endif
+    endfunction
+  augroup END
+
+  "automatically move to last position in a file
+  augroup ReloadPosition
+    "automatically jump to the last place you were in a previous session
+    autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$")
+          \| exe "normal! g`\""
+          \| endif
+  augroup END
+endif
+
+" ================ Completion =======================
+
+set wildmenu
+set wildmode=longest,full
+set wildignore=.svn,CVS,.git,.hg,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.xpm,*.gif,.gitkeep,*~ "stuff to ignore when tab completing
+
+" ================ Appearance =======================
+
+if has('termguicolors')
+  set termguicolors             "Use 24bit colors if available
+endif
+
+set background=dark
+colorscheme gruvbox
+
+" ================ Plugin customisation =============
+
+" Mundo
+let g:mundo_preview_bottom = 1 "improve how mundo window is displayed
+" open mundo window
+nnoremap <F3> :MundoToggle<CR>
+
+" open tagbar window
+nmap <F8> :TagbarToggle<CR>
+
+" use ag with ack.vim
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
