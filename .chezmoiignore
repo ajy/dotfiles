@@ -4,6 +4,7 @@
 
 {{ if ne .chezmoi.os "windows" }}
 vimfiles
+Appdata/Local/symlink_nvim
 {{ end }}
 
 .config/nvim/plugin/packer_compiled.lua
