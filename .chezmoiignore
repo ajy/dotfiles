@@ -4,3 +4,5 @@
 {{ if ne .chezmoi.os "windows" }}
 .vimfiles
 {{ end }}
+
+.config/nvim/plugin/packer_compiled.lua
