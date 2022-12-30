@@ -1,8 +1,9 @@
 {{ if ne .chezmoi.os "linux" }}
 .dir_colors
 {{ end }}
+
 {{ if ne .chezmoi.os "windows" }}
-.vimfiles
+vimfiles
 {{ end }}
 
 .config/nvim/plugin/packer_compiled.lua
