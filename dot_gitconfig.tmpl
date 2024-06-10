@@ -1,6 +1,13 @@
+{{ if eq .chezmoi.username "ADOBENET\\gavankar" }}
+[user]
+	email = gavankar@adobe.com
+	name = gavankar
+{{ else }}
 [user]
 	email = ajygvnkr@gmail.com
 	name = ajy
+{{end}}
+
 [core]
     pager = delta
 
@@ -19,7 +26,9 @@
 
 [diff]
     colorMoved = default
+
 [commit]
 	verbose = true
+
 [help]
 	autocorrect = prompt
